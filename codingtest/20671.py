@@ -14,7 +14,7 @@ def larger(a,b):
         swap=True
     la=len(sa)
     lb=len(sb)
-    for i in range((lb//la)+1):
+    for i in range((lb//la)):
         for j in range(1,1+la):
             if sb=='':
                 return False^swap
@@ -23,44 +23,43 @@ def larger(a,b):
             if int(sa[:j])>int(sb[:j]):
                 return False^swap
         sb=sb[la:]
-precallst=[0]*3000
+    if sb=='':
+        return False^swap
+    return larger(sa,sb)^swap
+precallst=[0]*3100
 def precal():
     precallst[0]=1
-    for i in range(1,3000):
+    for i in range(1,3100):
         precallst[i]=precallst[i-1]*10%1000000007
 precal()
 def following(arr,n):
     currentidx=arr[0][1]
     templst=[[0,0] for i in range(n)]
-    resultlst=[0]*3000
+    resultlst=[0]*3100
     for x in arr[1:]:
         if templst[x[1]][0]==0:
             templst[x[1]][0]=len(str(x[0]))
         else:
             templst[x[1]][1]=len(str(x[0]))
     templst.pop(currentidx)
-    nextlst=[0]*3000
+    nextlst=[0]*3100
     resultlst[templst[0][0]]+=1
     resultlst[templst[0][1]]+=1
     for x in templst[1:]:
-        for i in range(3000):
+        for i in range(3100):
             if resultlst[i]!=0:
                 nextlst[i+x[0]]+=resultlst[i]
-        for i in range(3000):
+        for i in range(3100):
             if resultlst[i]!=0:
                 nextlst[i+x[1]]+=resultlst[i]
         resultlst=nextlst
-        nextlst=[0]*3000
+        nextlst=[0]*3100
     result=0
-    for i in range(3000):
+    for i in range(3100):
         if resultlst[i]!=0:
             result=(result+resultlst[i]*precallst[i])%1000000007
     result=result*arr[0][0]%1000000007
     return result
-
-
-
-
 
 T=int(input())
 for tc in range(1,T+1):
@@ -85,7 +84,9 @@ for tc in range(1,T+1):
         result=a[0][0]+b[0][0]
     else:
         for i,x in enumerate(c):
-            result=(result+following(c[i:],N))%1000000007
+            a=following(c[i:],N)
+            print(a)
+            result=(result+a)%1000000007
     print(f'#{tc} {result}')
 
 

@@ -10,16 +10,13 @@ for tc in range(1,T+1):
         elif s=='(':
             top+=1
             check[top]=1
-            print(check[:10])
         elif s=='{':
             top+=1
             check[top]=2
-            print(check[:10])
         elif s==')':
             if check[top]==1:
                 check[top]=0
                 top-=1
-                print(check[:10])
             else:
                 result=0
                 break
@@ -27,7 +24,6 @@ for tc in range(1,T+1):
             if check[top]==2:
                 check[top]=0
                 top-=1
-                print(check[:10])
             else:
                 result=0
                 break

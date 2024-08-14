@@ -6,9 +6,9 @@ for tc in range(1,T+1):
     pandp=[[i+1,i+1] for i in range(N)]
     swap=[]
     for _ in range(6):
-        print(pandp)
-        print(swap)
-        print()
+        # print(pandp)
+        # print(swap)
+        # print()
         for i in range(N):
             pandp[i][1]+=arr[pandp[i][0]-1]
         temp=[]
@@ -21,14 +21,11 @@ for tc in range(1,T+1):
                     d=abs(pandp[j][1]-pandp[j+1][1])
                     t=1-(d/v)
                     temp.append([pandp[j][0],pandp[j+1][0],t])
-                    print([pandp[j][0],pandp[j+1][0],t])
+                    # print([pandp[j][0],pandp[j+1][0],t])
                     pandp[j],pandp[j+1]=pandp[j+1],pandp[j]
         temp=sorted(temp,key=itemgetter(2))
         swap+=temp
         
-
-
-
     result = [10,0]
     for i in range(N):
         know = [0] * N
