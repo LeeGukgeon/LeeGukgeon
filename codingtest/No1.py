@@ -47,4 +47,3 @@ for tc in range(1,1+T):
     Monarch=[input().split() for i in range(N)]
     allylst=[]
     hostilelst=[]
-    mornachidx=
