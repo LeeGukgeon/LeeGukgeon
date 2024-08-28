@@ -1,29 +1,58 @@
-def search(idx,s):
-    global abox
-    global bbox
-    global result
-    global result_s
-    if idx==N:
-        if abs(abox-bbox)<result:
-            result=abs(abox-bbox)
-            result_s= s
-            return 0
-        return 0
-    next_idx=idx+1
-    exc = search(next_idx,s+"0")
-    abox+=oset[idx]
-    inc = search(next_idx,s+"1")
-    abox-=oset[idx]
-    return min(inc,exc)
 T=int(input())
-for tc in range(1,1+T):
+square=[0]*100001
+third=[0]*100001
+forth=[0]*100001
+for i in range(100001):
+    square[i]=i**2
+    third[i]=square[i]*i
+    forth[i]=third[i]*i
+
+for tc in range(1,201):
     N,K=map(int,input().split())
-    oset = [0]*N
-    for i in range(N):
-        oset[i] = (i+1)**K
-    abox=0
-    bbox=0
-    result = 5e10
-    result_s=""
-    search(0,"")
-    print(f'#{tc} {result}')
+    temp=0
+    result=''
+    if K==1:
+        if N%4==0:
+            print('0 ',end='')
+            print('1001'*(N//4))
+        elif N%4==1:
+            print('1 1',end='')
+            print('1001' * (N // 4))
+        elif N%4==2:
+            print('1 01',end='')
+            print('1001' * (N // 4))
+        else:
+            print('0 001', end='')
+            print('1001' * (N // 4))
+    elif K==2:
+        for i in range(N):
+            if 0<temp:
+                result = '0' + result
+                temp -= square[N - i]
+            else:
+                result = '1' + result
+                temp += square[N-i]
+    elif K==3:
+        for i in range(N):
+            if 0<temp:
+                result = '0' + result
+                temp -= third[N - i]
+            else:
+                result = '1' + result
+                temp += third[N-i]
+    elif K==4:
+        for i in range(N):
+            if 0<temp:
+                result = '0' + result
+                temp -= forth[N - i]
+            else:
+                result = '1' + result
+                temp += forth[N-i]
+
+    print(abs(temp),result)
+for i in range(T-200):
+    print('0 0')
+
+
+
+
