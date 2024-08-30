@@ -1,1 +1,3 @@
-print([i**4 for i in range(20)])
+st='0001110101110110101'
+print(st.split('0'))
+print(st)
