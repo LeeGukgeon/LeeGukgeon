@@ -1,7 +1,4 @@
-from pprint import pprint
-
-
-def find_optimization(eliminate, level):
+def find_optimization(eliminate, level): #모든 조합으로 구슬 떨어뜨리기
     if level == N:
         result = W * H
         for i in range(H):
@@ -15,7 +12,7 @@ def find_optimization(eliminate, level):
     return result
 
 
-def change(blocks, c):
+def change(blocks, c): # 중력
     boomed = [[False for i in range(W)] for j in range(H)]
     new_blocks = [[blocks[i][j] for j in range(W)] for i in range(H)]
     r = 0
@@ -39,7 +36,6 @@ def change(blocks, c):
                 lower_index -= 1
             else:
                 upper_index -= 1
-    pprint(new_blocks)
     return new_blocks
 
 def boom(r, c, boomed, new_blocks): #연쇄적으로 터트리기
